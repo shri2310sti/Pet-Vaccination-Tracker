@@ -12,24 +12,27 @@ import hashlib
 
 app = FastAPI()
 
+# Read configuration from environment variables (suitable for Render)
+FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
+UPLOADS_DIR = os.getenv("UPLOADS_DIR", "uploads")
+DATA_DIR = os.getenv("DATA_DIR", "data")
+DATA_FILE = os.getenv("DATA_FILE", os.path.join(DATA_DIR, "users.json"))
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[FRONTEND_ORIGIN],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Create directories
-os.makedirs("uploads", exist_ok=True)
-os.makedirs("data", exist_ok=True)
+os.makedirs(UPLOADS_DIR, exist_ok=True)
+os.makedirs(DATA_DIR, exist_ok=True)
 
-# Mount static files
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
-
-# Data storage file
-DATA_FILE = "data/users.json"
+# Mount static files (uploads)
+app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")
 
 # Models
 class UserRegistration(BaseModel):

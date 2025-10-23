@@ -66,7 +66,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-The backend will start at: http://localhost:8000
+The backend will start at: https://pet-vax-backend.onrender.com
 
 **Keep this terminal running!**
 
@@ -181,12 +181,12 @@ pip install fastapi uvicorn python-multipart
 - Run: `npm start` and choose different port when prompted
 
 **Error: Cannot connect to backend**
-- Make sure backend is running at http://localhost:8000
+- Make sure backend is running at https://pet-vax-backend.onrender.com
 - Check if CORS is enabled in backend
 
 **Images not showing**
 - Ensure backend uploads folder exists
-- Check image path starts with http://localhost:8000/uploads/
+- Check image path starts with https://pet-vax-backend.onrender.com/uploads/
 
 ---
 
@@ -235,7 +235,7 @@ uvicorn main:app --reload
 pip install -r requirements.txt
 
 # Check if running
-curl http://localhost:8000
+curl https://pet-vax-backend.onrender.com
 ```
 
 ### Frontend Commands
